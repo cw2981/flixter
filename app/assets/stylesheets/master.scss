@@ -1,0 +1,26 @@
+@import 'bootstrap';
+/*font-family: 'Roboto Condensed', sans-serif;
+font-family: 'Pacifico', cursive;
+font-family: 'Abril Fatface', cursive;*/
+.navbar {
+  font-family: "Helvetica Neue", Helvetica;
+  font-weight: 200;
+  box-shadow: 0px 1px 3px #2a2a2a;
+  background: image_url('united-squares-negative.png');
+}
+
+.navbar-inverse a.navbar-brand {
+  font-family: "Helvetica Neue", Helvetica;
+  font-weight: 100;
+  color: blue;
+  font-family: 'Abril Fatface', cursive;
+} 
+
+body {
+  background-image: image_url('memphis-mini.png');
+}
+
+.navbar-inverse .navbar-nav .nav-link {
+  color: blue;
+  font-family: 'Roboto Condensed', sans-serif;
+}
