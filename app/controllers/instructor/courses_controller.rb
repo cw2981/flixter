@@ -6,32 +6,32 @@ class Instructor::CoursesController < ApplicationController
     @course = Course.new
   end
 
-  def create 
+  def create
     @course = current_user.courses.create(course_params)
     if @course.valid?
-    redirect_to instructor_course_path(@course)
-  else
-    render :new, status: :unprocessable_entity
+      redirect_to instructor_course_path(@course)
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   def show
   end
 
-private
+  private
 
   def require_authorized_for_current_course
     if current_course.user != current_user
-      render plain: "Unauthorized", status: :unauthorized 
+      render plain: "Unauthorized", status: :unauthorized
     end
   end
 
   helper_method :current_course
   def current_course
-    @current_course ||= Course.find(params)[:id]
+    @current_course ||= Course.find(params[:id])
   end
 
   def course_params
     params.require(:course).permit(:title, :description, :cost)
-    end
   end
+end
