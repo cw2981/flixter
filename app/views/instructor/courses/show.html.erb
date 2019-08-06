@@ -1,13 +1,13 @@
 <script>
   $(function() {
     $('.new-lesson-button').click(function( event ) {
-  var lessonUrl = $( event.target).data('lesson-url');
-    $('#newLessonForm').attr('action', lessonUrl);
+      var lessonUrl = $(event.target).data('lesson-url');
+      $('#newLessonForm').attr('action', lessonUrl);
+    });
   });
-  
   $(function() {
     $('.lessons').sortable({
-      update: function( event, ui ) {
+      update: function( event, ui){
         $.ajax({
           type: 'PUT',
           url: ui.item.data('update-url'),
@@ -16,21 +16,22 @@
         });
       }
     });
-
-
+  });
+  $(function(){
     $('.sections').sortable({
-      update: function( event, ui ) {
+      update: function(event, ui){
         $.ajax({
           type: 'PUT',
           url: ui.item.data('update-url'),
           dataType: 'json',
-          data: { section: { row_order_position: ui.item.index() } }
+          data: { section: {row_order_position: ui.item.index() } }
         });
       }
     });
-
   });
+  
 </script>
+
 
 <br />
 
@@ -52,12 +53,13 @@
       <li data-update-url = "<%= instructor_section_path(section)%>" class="section-li">
         <div class="header">
         <span class="fa fa-ellipsis-v"></span>
-      </div>
-        <%= section.title %>
-      <!-- Button trigger modal -->
-       <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_section_lessons_path(section) %>">
-        New lesson...
-    </button>
+      <%= section.title %>
+    </div>
+      < <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'float-right btn btn-primary btn-sm' %>
+        <!-- Lessons Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url = "<%= instructor_section_lessons_path(section) %>">
+          New Lesson...
+        </button>
 
         <br class="clr" />
         <br class="clr" />
@@ -127,7 +129,7 @@
         </button>
         <h4 class="modal-title" id="newLessonModalLabel">Add new lesson</h4>
       </div>
-      <%= simple_form_for @lesson, url: "#", html: {id: 'newLessonForm' } do |f| %>
+      <%= simple_form_for @lesson, url: '#', html: {id: 'newLessonForm' } do |f| %>
         <div class="modal-body">
           <%= f.input :title %>
         <%= f.input :subtitle %>
