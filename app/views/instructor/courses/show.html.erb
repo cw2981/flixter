@@ -1,13 +1,12 @@
 <script>
   $(function() {
-    $('.new-lesson-button').click(function( event ) {
-      var lessonUrl = $(event.target).data('lesson-url');
-      $('#newLessonForm').attr('action', lessonUrl);
-    });
+   $('.new-lesson-button').click(function( event ) {
+  var lessonUrl = $( event.target).data('lesson-url');
+  $('#newLessonForm').attr('action', lessonUrl);
   });
-  $(function() {
-    $('.lessons').sortable({
-      update: function( event, ui){
+
+   $('.lessons').sortable({
+      update: function( event, ui ) {
         $.ajax({
           type: 'PUT',
           url: ui.item.data('update-url'),
@@ -16,22 +15,22 @@
         });
       }
     });
-  });
-  $(function(){
-    $('.sections').sortable({
-      update: function(event, ui){
+
+
+      $('.sections').sortable({
+      update: function( event, ui ) {
         $.ajax({
           type: 'PUT',
           url: ui.item.data('update-url'),
           dataType: 'json',
-          data: { section: {row_order_position: ui.item.index() } }
+          data: { section: { row_order_position: ui.item.index() } }
         });
       }
     });
-  });
-  
-</script>
 
+  });
+
+</script>
 
 <br />
 
@@ -55,11 +54,12 @@
         <span class="fa fa-ellipsis-v"></span>
       <%= section.title %>
     </div>
-      < <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'float-right btn btn-primary btn-sm' %>
-        <!-- Lessons Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url = "<%= instructor_section_lessons_path(section) %>">
+
+         <!-- Button trigger modal -->
+       <button type="button" class="btn btn-primary btn-lg float-right new-lesson-button" data-toggle="modal" data-target="#newLessonModal" data-lesson-url="<%= instructor_lesson_path(section) %>">
           New Lesson...
         </button>
+
 
         <br class="clr" />
         <br class="clr" />
@@ -132,8 +132,8 @@
       <%= simple_form_for @lesson, url: '#', html: {id: 'newLessonForm' } do |f| %>
         <div class="modal-body">
           <%= f.input :title %>
-        <%= f.input :subtitle %>
-        <%= f.input :video %>
+          <%= f.input :subtitle %>
+          <%= f.input :video %>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
