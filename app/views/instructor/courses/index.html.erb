@@ -5,6 +5,7 @@
   <hr />
 
   <% @courses.each do |course| %>
+  <div class="booyah-box col-10 offset-1">
     <h2 class="text-center">
       <%= link_to course.title, course_path(course) %>
       </h2>
@@ -17,6 +18,7 @@
       <%= link_to 'Button', '#', class: 'btn btn-primary btn-large' %>
     </div>
   </div>
+</div>
   <br class="clr" />
   <% end %>
 
